@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0d1117, #1b2330, #0f1724);
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+  animation: fadeIn 1s ease;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glass Box */
+.glass {
+  /* background: rgba(255, 255, 255, 0.06);    */
+  border-radius: 22px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.15); 
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 30px 24px;
+}
+
+/* Title */
+.app-title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Subtext */
+.lead {
+  margin-top: 8px;
+  color: #cfd9ff;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* -------------------------
+     BUTTON GRID
+-------------------------- */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  animation: fadeIn 1s ease;
+}
+
+/* Button Style */
+.btn-glass {
+  display: block;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  text-decoration: none;
+  color: #eaf0ff;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+/* Hover */
+.btn-glass:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+     FOOTER
+-------------------------- */
+.footer {
+  width:100%;
+  padding:32px 0;
+  text-align:center;
+  margin-top:60px;
+  /* background: rgba(255,255,255,0.04);  */
+  /* backdrop-filter: blur(14px); */
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+}
+
+.footer-text {
+  color: rgba(234,242,255,0.85);
+  font-size: 14px;
+  max-width: 600px;
+  margin: 6px auto 16px;
+}
+
+.footer-links {
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+}
+
+.footer-links a {
+  color: #eaf2ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.copyright {
+  color: rgba(234,242,255,0.6);
+  font-size: 12px;
+}
+
+
+
+
+
+/* ----------- Regular Phones (max 480px) ----------- */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 0 14px;
+    margin: 20px auto 30px;
+  }
+
+  .app-title {
+    font-size: 24px;
+  }
+
+  .lead {
+    font-size: 14px;
+  }
+
+  /* --- FIXED: Use FLEX instead of GRID --- */
+  .buttons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Make each button exactly 48% to sit 2 per row */
+  .btn-glass {
+    width: calc(50% - 6px);
+    font-size: 15px;
+    padding: 13px 8px;
+    border-radius: 14px;
+  }
+
+  .footer {
+    margin-top: 40px;
+  }
+
+  .footer-links {
+    gap: 10px;
+  }
+}

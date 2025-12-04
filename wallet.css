@@ -1,0 +1,200 @@
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f3f3f3;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
+    }
+
+    .overlay {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .modal {
+      background: #ffffff;
+      /* border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      overflow: hidden; */
+      min-height: 100vh;
+      border-radius: 0 !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screen {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 20px 30px;  
+      /* padding: 18px 20px 20px;   */
+    }
+
+    .screen-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #777777;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #d5d5d5;
+      padding: 10px 14px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 2px #e5f0ff;
+      border-color: #007bff;
+    }
+
+    .wallet-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      /* max-height: 420px;  */
+      /* overflow-y: auto;  */
+      padding-right: 4px;
+      /* display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      max-height: none; 
+      overflow-y: visible; */
+      max-height: none;
+      overflow-y: visible;  
+    }
+
+    .wallet {
+      text-decoration: none;
+      background: #fafafa;
+      /* border-radius: 14px;  */
+      border: 1px solid #e1e1e1;
+      /* width: calc(50% - 5px);
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; */
+      gap: 6px;
+      cursor: pointer;
+      transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease; 
+
+      width: calc(50% - 6px);
+      padding: 14px 10px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wallet:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: #d2e5ff;
+      transform: translateY(-1px);
+    }
+
+    .wallet .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .wallet .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .wallet p {
+      font-size: 14px;
+      color: #222222;
+      text-align: center;
+    }
+
+    .footer-back {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-back a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-back a:hover {
+      text-decoration: underline;
+    }
+
+@media (max-width: 480px) {
+
+  .overlay {
+    max-width: 100%;
+  }
+
+  .screen-title {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .search-input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .wallet-grid {
+    gap: 12px;
+  }
+
+  .wallet {
+    width: calc(50% - 6px);
+    padding: 14px 8px;
+  }
+
+  .wallet .icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wallet p {
+    font-size: 14px;
+  }
+
+  .footer-back {
+    margin-top: 30px;
+    padding: 20px 0;
+    font-size: 14px;
+  }
+}

